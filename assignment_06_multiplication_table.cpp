@@ -57,3 +57,48 @@
 #include <iostream>
 using namespace std;
 
+#include <iostream>
+using namespace std;
+
+int multiplication(int n, int a) {
+    int product = 0;
+    for (int x = 0; x < a; x++) {
+        product += n;
+    }
+    return product;
+}
+
+int main() {
+    int user_input;
+    cout << "Enter a number: ";
+    cin >> user_input;
+
+    if (user_input < 0) {
+        cout << "Error: enter positive numbers only." << endl;
+    } else {
+        for (int i = 1; i < 13; i++) {
+            int mul_table = multiplication(user_input, i);
+            cout << user_input << " x " << i << " = " << mul_table << endl;
+        }
+    }
+
+    // PART B
+
+    int N;
+    cout << "Enter a number: ";
+    cin >> N;
+
+    if (N < 0) {
+        cout << "Error: enter positive numbers only." << endl;
+    } else {
+        for (int h = 1; h < N + 1; h++) {
+            for (int m = 1; m < 13; m++) {
+                int mul_table1 = multiplication(h, m);
+                cout << h << " x " << m << " = " << mul_table1 << endl;
+            }
+            cout << "___________________" << endl;
+        }
+    }
+
+    return 0;
+}

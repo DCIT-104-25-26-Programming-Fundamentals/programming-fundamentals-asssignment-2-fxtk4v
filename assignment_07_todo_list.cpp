@@ -80,3 +80,67 @@
 #include <string>
 using namespace std;
 
+
+vector<string> task_list;
+
+void add_task(string task) {
+    task_list.push_back(task);
+}
+
+void view_task() {
+    for (int t = 1; t < (int)task_list.size() + 1; t++) {
+        cout << t << ". " << task_list[t - 1] << endl;
+    }
+}
+
+void delete_task(int n) {
+    task_list.erase(task_list.begin() + (n - 1));
+}
+
+void quit() {
+    cout << "Goodbye!" << endl;
+}
+
+int main() {
+    int user_choice = 0;
+
+    while (!(user_choice == 4)) {
+        cout << "============================ \n      TO-DO LIST MENU\n============================ " << endl;
+        cout << "1. Add task \n2. View tasks \n3. Delete task \n4. Quit" << endl;
+
+        cout << "Enter your choice (1-4): ";
+        cin >> user_choice;
+
+        if (user_choice == 1) {
+            string task;
+            cout << "Enter task: ";
+            cin.ignore();
+            getline(cin, task);
+            add_task(task);
+            cout << "Task added: \"" << task << "\"" << endl;
+
+        } else if (user_choice == 2) {
+            view_task();
+            cout << "[";
+            for (size_t i = 0; i < task_list.size(); i++) {
+                cout << "\"" << task_list[i] << "\"";
+                if (i != task_list.size() - 1) {
+                    cout << ", ";
+                }
+            }
+            cout << "]" << endl;
+
+        } else if (user_choice == 3) {
+            int task_to_del;
+            cout << "Enter task number to delete: ";
+            cin >> task_to_del;
+            cout << "Task \"" << task_list[task_to_del - 1] << "\" has been removed" << endl;
+            delete_task(task_to_del);
+
+        } else if (user_choice == 4) {
+            quit();
+        }
+    }
+
+    return 0;
+}

@@ -72,4 +72,140 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
+#include <string>
+#include <sstream>
 
+
+double add(double a, double b) {
+    return a + b;
+}
+
+double subtract(double a, double b) {
+    return a - b;
+}
+
+double multiply(double a, double b) {
+    return a * b;
+}
+
+double divide(double a, double b, bool& valid) {
+    if (b == 0) {
+        valid = false;
+        return 0;
+    }
+    valid = true;
+    return a / b;
+}
+
+double mod(double a, double b, bool& valid) {
+    if (b == 0) {
+        valid = false;
+        return 0;
+    }
+    valid = true;
+    return fmod(a, b);
+}
+
+double exponentiation(double a, double b) {
+    return pow(a, b);
+}
+
+string format_num(double n) {
+    if (n == (int)n) {
+        return to_string((int)n);
+    }
+    ostringstream oss;
+    oss << n;
+    return oss.str();
+}
+
+void print_menu() {
+    cout << string(30, '=') << endl;
+    cout << "      SIMPLE CALCULATOR" << endl;
+    cout << string(30, '=') << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Modulus" << endl;
+    cout << "6. Exponentiation" << endl;
+    cout << "7. Quit" << endl;
+}
+
+int main() {
+    int choice = 0;
+
+    while (choice != 7) {
+        print_menu();
+
+        cout << "Select an operation (1-7): ";
+        cin >> choice;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input. Please enter a number between 1 and 7." << endl;
+            cout << endl;
+            continue;
+        }
+
+        if (choice == 7) {
+            cout << "Goodbye!" << endl;
+            break;
+        }
+
+        if (!(choice >= 1 && choice < 7)) {
+            cout << "Invalid choice. Please select a number between 1 and 7." << endl;
+            cout << endl;
+            continue;
+        }
+
+        double num1, num2;
+        cout << "Enter first number : ";
+        cin >> num1;
+        cout << "Enter second number: ";
+        cin >> num2;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Invalid input. Please enter valid numbers." << endl;
+            cout << endl;
+            continue;
+        }
+
+        if (choice == 1) {
+            double result = add(num1, num2);
+            cout << "Result: " << format_num(num1) << " + " << format_num(num2) << " = " << format_num(result) << endl;
+        } else if (choice == 2) {
+            double result = subtract(num1, num2);
+            cout << "Result: " << format_num(num1) << " - " << format_num(num2) << " = " << format_num(result) << endl;
+        } else if (choice == 3) {
+            double result = multiply(num1, num2);
+            cout << "Result: " << format_num(num1) << " * " << format_num(num2) << " = " << format_num(result) << endl;
+        } else if (choice == 4) {
+            bool valid;
+            double result = divide(num1, num2, valid);
+            if (!valid) {
+                cout << "Error: Cannot divide by zero." << endl;
+            } else {
+                cout << "Result: " << format_num(num1) << " / " << format_num(num2) << " = " << fixed << setprecision(2) << result << endl;
+            }
+        } else if (choice == 5) {
+            bool valid;
+            double result = mod(num1, num2, valid);
+            if (!valid) {
+                cout << "Error: Cannot divide by zero." << endl;
+            } else {
+                cout << "Result: " << format_num(num1) << " % " << format_num(num2) << " = " << format_num(result) << endl;
+            }
+        } else if (choice == 6) {
+            double result = exponentiation(num1, num2);
+            cout << "Result: " << format_num(num1) << " ** " << format_num(num2) << " = " << format_num(result) << endl;
+        }
+
+        cout << endl;
+    }
+
+    return 0;
+}

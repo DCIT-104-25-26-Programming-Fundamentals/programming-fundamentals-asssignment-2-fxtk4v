@@ -46,3 +46,39 @@
 #include <iostream>
 using namespace std;
 
+void grading(int n) {
+    string grade = "";
+
+    if (n >= 80 && n <= 100) {
+        grade = "A";
+    }
+    else if (n >= 70 && n <= 79) {
+        grade = "B";
+    }
+    else if (n >= 60 && n <= 69) {
+        grade = "C";
+    }
+    else if (n >= 50 && n <= 59) {
+        grade = "D";
+    }
+    else if (n < 50) {
+        grade = "F";
+    }
+    else {
+        cout << "Error: Score must be between 0 and 100." << endl;
+    }
+
+    cout << "Grade: " << grade << endl;
+
+    
+}
+
+int main(){
+    int score;
+    cout << "Enter student score (0-100): ";
+    cin >> score;
+
+    grading(score);
+
+    return 0;
+}

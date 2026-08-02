@@ -37,3 +37,34 @@
 #include <iostream>
 using namespace std;
 
+void primeNum(int n) {
+
+    bool prime = true;
+
+    if (n < 2) {
+        prime = false;   
+    }
+
+    for (int x = 2; x < 2; x++) {
+        if (n % x == 0) {
+            prime = false;
+        }
+    }
+
+    if (prime) {
+        cout << n << " is a prime number" << endl;
+    }
+    else {
+        cout << n << " is not a prime number" << endl;
+    }
+
+}
+
+int main() {
+    int user_input;
+    cout << "Enter a number: ";
+    cin >> user_input;
+
+    primeNum(user_input);
+    return 0;
+}

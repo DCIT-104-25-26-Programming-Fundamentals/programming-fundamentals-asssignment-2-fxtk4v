@@ -40,5 +40,109 @@
 // =============================================================================
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
+int add(vector<int> n) {
+    int total = 0;
+
+    if (n.size() < 0) {
+        cout << "Error: numbers must be positive" <<endl;
+    }
+    else {
+        for (int x : n) {
+            total += x;
+        }        
+    }
+
+    return total;
+}
+
+int avg(vector<int> n) {
+    int total = 0;
+
+    if (n.size() < 0) {
+        cout << "Error: numbers must be postive" <<endl;
+    }
+    else {
+        for (int x : n) {
+            total += x;
+        }
+    }
+
+    int num = 0;
+
+    for (int h : n) {
+        num += 1;
+    }
+
+    int average;
+    average = total / n.size();
+
+    return average;
+
+}
+
+int max(vector<int> n) {
+    int highest;
+
+    if (n.size() < 0) {
+        cout << "Error: numbers must be positive" <<endl;
+    }
+    else {
+        highest = n[0];
+
+        for (int x : n) {
+            if (x > highest) {
+                highest = x;
+            }
+        }
+    }
+
+    return highest;
+}
+
+int min(vector<int> n) {
+    int lowest;
+
+    if (n.size() < 0) {
+        cout << "Error: numbers must be positive" <<endl;
+    }
+    else {
+        lowest = n[0];
+
+        for (int x : n) {
+            if (x < lowest) {
+                lowest = x;
+            }
+        }
+    }
+
+    return lowest;
+}
+
+int main() {
+    int amt_of_numbers;
+    cout << "How many numbers? ";
+    cin >> amt_of_numbers;
+
+    vector<int> stat_vals;
+    for (int i = 0; i < amt_of_numbers; i++) {
+        int num;
+        cout << "Enter number" << i + 1 << ": ";
+        cin >> num;
+        stat_vals.push_back(num);
+    }
+
+    int sum = add(stat_vals);
+    int average = avg(stat_vals);
+    int maximum = max(stat_vals);
+    int minimum = min(stat_vals);
+
+    cout << "\nResults: ";
+    cout << "\nSum: " <<sum<< "\nAverage: " <<average<< "\nMaximum: " <<maximum<< "\nMinimum: " <<minimum<<endl;
+
+}
+
+
+ 
